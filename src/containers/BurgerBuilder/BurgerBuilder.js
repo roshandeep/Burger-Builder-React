@@ -43,45 +43,6 @@ class BurgerBuilder extends Component{
         return sum > 0;
     }
 
-    // addIngredientHandler = (type) =>{
-    //     const oldCount = this.state.ingredients[type];
-    //     const updatedCount = oldCount+1;
-    //     const updatedIngredients={
-    //         ...this.state.ingredients
-    //     };
-    //     updatedIngredients[type]=updatedCount;
-    //     const priceAddition=INGREDIENT_PRICES[type];
-    //     const oldPrice=this.state.totalPrice;
-    //     const newPrice =oldPrice+priceAddition;
-
-    //     this.setState({
-    //         ingredients:updatedIngredients,
-    //         totalPrice:newPrice
-    //     });
-    //     this.updatePurchaseState(updatedIngredients);
-    // }
-
-    // removeIngredientHandler = (type) =>{
-    //     const oldCount = this.state.ingredients[type];
-    //     if (oldCount <= 0){
-    //         return;
-    //     }
-    //     const updatedCount = oldCount-1;
-    //     const updatedIngredients={
-    //         ...this.state.ingredients
-    //     };
-    //     updatedIngredients[type]=updatedCount;
-    //     const priceDeduction=INGREDIENT_PRICES[type];
-    //     const oldPrice=this.state.totalPrice;
-    //     const newPrice =oldPrice-priceDeduction;
-
-    //     this.setState({
-    //         ingredients:updatedIngredients,
-    //         totalPrice:newPrice
-    //     });
-    //     this.updatePurchaseState(updatedIngredients);
-    // }
-
     //Arrow functions maintain states but regular functions if the method is triggered through an event.
     //So we use arrow function
     purchaseHandler = () => {
@@ -92,17 +53,8 @@ class BurgerBuilder extends Component{
         this.setState({purchasing: false});
     }
 
-    purchaseContinueHandler = () =>{
-        const queryParams=[];
-        for(let i in this.state.ingredients){
-            queryParams.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.ingredients[i]))
-        }
-        queryParams.push('price=' + this.state.totalPrice);
-        const queryString=queryParams.join('&');
-        this.props.history.push({
-            pathname: '/checkout',
-            search: '?' + queryString
-        });
+    purchaseContinueHandler = () => {
+        this.props.history.push('/checkout');
     }
 
     render(){
